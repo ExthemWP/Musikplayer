@@ -253,9 +253,11 @@ SwitchRainbow.change(function() {
 SwitchPitch.change(function() {
     if(this.checked) {
         song.mozPreservesPitch = false;
+        song.preservesPitch = false;
     } else
     {
         song.mozPreservesPitch = true;
+        song.preservesPitch = true;
     }
 });
 
