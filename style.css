@@ -1,0 +1,158 @@
+body {
+    background-color: rgb(33,33,33);
+    color: white;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+main {
+    margin-bottom: 150px;
+}
+
+.nav-link {
+    margin: .5em 0;
+}
+
+.nav-link:hover {
+    cursor:pointer;
+}
+
+.fa, .fas {
+    font-size: 1.2em;
+}
+
+.disabled {
+    display: none;
+}
+
+.navbar-brand > img {
+    background-color: white;
+    margin: 1px;
+    padding: 1px;
+    border-radius: 50%;
+}
+
+.album-cover {
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.music-file-input {
+    margin: 0.5em auto;
+    width: 90%;
+}
+
+.music-file-input > input {
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+}
+
+.music-file-input > button {
+    background-color: white;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+main > h1 {
+    padding: .5em;
+}
+
+.musikplayer-main > h2 {
+    padding: .5em;
+}
+
+footer {
+    font-size: 1.2em;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: black;
+    background-color: white;
+    padding: 1.5em;
+}
+
+.musikplayer-controls {
+    width: 90%;
+    margin: auto;
+}
+
+.musikplayer-controls > span:hover {
+    cursor: pointer;
+}
+
+.musikplayer-controls-main, .musikplayer-controls-advanced, .musikplayer-controls-time {
+    width: 100%;
+}
+
+.musikplayer-controls > div,
+.musikplayer-controls-time,
+.musikplayer-controls-time > div,
+.musikplayer-controls-volume,
+.musikplayer-controls-volume > div {
+    display: inline-block;
+}
+
+#timeSlider {
+    width: 20vh;
+}
+
+#timeSlider, #volumeSlider {
+    margin: 0 .5em;
+}
+
+#volumeSlider {
+    width: 10vh;
+}
+
+.fa-retweet, .fa-pause, .fa-play {
+    padding: 0 .5em;
+}
+
+.fa-pause, .fa-play, .fa-backward, .fa-forward, .fa-retweet {
+    cursor: pointer;
+}
+
+.modal {
+    color:black;
+}
+
+.modal-body {
+    text-align: left;
+}
+
+.modal-body > p {
+    margin-bottom: 0;
+}
+
+.demoSongLink:hover {
+    cursor:pointer;
+    text-decoration: underline;
+    color: royalblue;
+}
+
+@media only screen and (min-width: 992px) {
+    .nav-link, .music-file-input {
+        margin: 0;
+    }
+
+    .music-file-input {
+        width: 35%;
+    }
+    #timeSlider {
+        width: 25vh;
+    }
+    .musikplayer-controls-main, .musikplayer-controls-advanced {
+        width: 25%;
+    }
+
+    .musikplayer-controls-time {
+        width: 40%;
+    }
+
+    @media only screen and (min-width: 1200px) {
+        .musikplayer-controls {
+            width: 75%;
+        }
+    }
+}

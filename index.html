@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Musikplayer Projekt von SoraCént">
+    <meta name="robots" content="no-index">
+    <meta charset="utf-8">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" type="image/svg+xml" href="favicon.svg">
+    <title>SoraCent - Musikplayer</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="favicon.svg" alt="" width="30" height="30" class="d-inline-block align-text-center">
+                    Musikplayer
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarToggler">
+                    <div class="d-flex music-file-input">
+                        <input class="form-control me-2" type="text" placeholder="Url zur Musikdatei" aria-label="Url" id="MusikUrlInput">
+                        <button class="btn" type="submit" onclick="defineAudioSource()">Abspielen</button>
+                    </div>
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" title="Demo Musik" data-bs-toggle="modal" data-bs-target="#demoMusicModal">
+                                <i class="fas fa-music"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" title="Einstellungen" data-bs-toggle="modal" data-bs-target="#settingsModal" >
+                                <i class="fas fa-cog"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" title="Informationen" data-bs-toggle="modal" data-bs-target="#infoModal">
+                                <i class="fas fa-info-circle"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <h1>Musikplayer</h1>
+        <div class="musikplayer-main">
+            <img class="album-cover" id="album-cover" src="assets/default-album-art.png" alt="Album Cover" />
+            <h2 class="song-name" id="song-name">Kein Lied geladen</h2>
+        </div>
+    </main>
+    <div class="modal fade" id="demoMusicModal" tabindex="-1" aria-labelledby="demoMusicModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="demoMusicModalLabel"><i class="fas fa-music"></i> Demo Musik</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="demoSongLink" onclick="loadDemoSong('Kingdom Hearts III - Dearly Beloved')" data-bs-dismiss="modal">
+                        Kingdom Hearts III - Dearly Beloved
+                    </p>
+                    <p class="demoSongLink" onclick="loadDemoSong('kingdom-hearts-dearly-beloved-remix_cover-sonicmedley')" data-bs-dismiss="modal">
+                        Kingdom Hearts Dearly Beloved Remix_Cover
+                    </p>
+                    <p class="demoSongLink" onclick="loadDemoSong('Flowey-Origins')" data-bs-dismiss="modal">
+                        Flowey Origins
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Schliessen</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="settingsModalLabel"><i class="fas fa-cog"></i> Einstellungen</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="SwitchAutoPlaySettings">
+                        <label class="form-check-label" for="SwitchAutoPlaySettings">Autoplay An/Aus (Nicht umgesetzt)</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="SwitchTempoSettings">
+                        <label class="form-check-label" for="SwitchTempoSettings">Tempo einstellungen An/Aus</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="SwitchRainbowSettings">
+                        <label class="form-check-label" for="SwitchRainbowSettings">Regenbogenmodus An/Aus (Nicht umgesetzt)</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="SwitchPitchSettings">
+                        <label class="form-check-label" for="SwitchPitchSettings">Pitch (nur Firefox) An/Aus</label>
+                    </div>
+                    <div class="disabled" id="TempoSettings">
+                        <hr />
+                        <h5>Tempo Einstellungen</h5>
+                        <div id="tempoSlider"></div>
+                        <span>Tempo: <span id="tempoAmount">1</span></span>
+                        <div class="tempoButtons">
+                            <button type="button" class="btn" onclick="ChangeTempoButton('0.25')">0.25</button>
+                            <button type="button" class="btn" onclick="ChangeTempoButton('0.5')">0.5</button>
+                            <button type="button" class="btn" onclick="ChangeTempoButton('1')">Normal</button>
+                            <button type="button" class="btn" onclick="ChangeTempoButton('2')">2</button>
+                            <button type="button" class="btn" onclick="ChangeTempoButton('4')">4</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Schliessen</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="infoModalLabel"><i class="fas fa-info-circle"></i> Informationen</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h1>Musikplayer Projekt</h1>
+                    <p>
+                        Author: <a href="https://soracent.de">SoraCént</a>
+                    </p>
+                    <p>
+                        Version: 1.2.0
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Schliessen</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="musikplayer-controls">
+            <audio id="song"></audio>
+            <div class="musikplayer-controls-main">
+                <i class="fas fa-backward" onclick="changeTime('backward')" title="10s nach hinten"></i>
+                <span class="disabled" id="pauseButton" onclick="pauseSong()" title="Pause"><i class="fas fa-pause"></i></span>
+                <span class="" id="playButton" onclick="playSong()" title="Abspielen"><i class="fas fa-play"></i></span>
+                <i class="fas fa-forward" onclick="changeTime('forward')" title="10s nach vorne"></i>
+            </div>
+            <div class="musikplayer-controls-time">
+                <span id="currentTime">0:00</span>
+                <div id="timeSlider"></div>
+                <span id="songTime">0:00</span>
+            </div>
+            <div class="musikplayer-controls-advanced">
+                <span class="" id="loopButton" onclick="loopSong()">
+                    <i class="fas fa-retweet" title="Loop"></i>
+                </span>
+                <div class="musikplayer-controls-volume">
+                    <i class="fas fa-volume-up"></i>
+                    <i class="fas fa-volume-down disabled"></i>
+                    <i class="fas fa-volume-off disabled"></i>
+                    <i class="fas fa-volume-mute disabled"></i>
+                    <div id="volumeSlider"></div>
+                </div>
+            </div>
+        </div>
+	</footer>
+	<script type="text/javascript" src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
